@@ -1,0 +1,9 @@
+*.pyc
+*.log
+*.swp
+*~
+*.dot
+.DS_Store
+.coverage
+MANIFEST
+dist/
