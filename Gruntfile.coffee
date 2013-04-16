@@ -32,8 +32,24 @@ module.exports = (grunt) ->
             }
         },
         
+        less: {
+            production: {
+                options: {
+                    yuicompress: true
+                },
+                files: {
+                    'static/css/build/ellumia.css': ['static/css/mixins.less', 'static/css/*.less']
+                }
+            }
+        }
+        
         watch: {
-            files: ['static/js/*.coffee', 'static/js/*.js', '!static/js/*.coffee.js'],
+            files: [
+                'static/js/*.coffee',
+                'static/js/*.js',
+                '!static/js/*.coffee.js',
+                'static/css/*.*'
+            ],
             tasks: ['build']
         }
     }
@@ -43,6 +59,7 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks('grunt-contrib-uglify')
     grunt.loadNpmTasks('grunt-contrib-concat')
     grunt.loadNpmTasks('grunt-contrib-watch')
+    grunt.loadNpmTasks('grunt-contrib-less')
     
     # Default tasks
-    grunt.registerTask('build', ['coffee', 'concat', 'uglify'])
+    grunt.registerTask('build', ['coffee', 'concat', 'uglify', 'less'])
