@@ -30,7 +30,6 @@ html, body {
     
     > div {
         width: 700px;
-        overflow: hidden;
         margin: 0 auto;
         display: table;
     }
@@ -70,7 +69,7 @@ img#logo {
         left: 0;
         width: 100%;
         height: 100%;
-        background: url('./img/vid.png') 0 0 no-repeat;
+        background: url('../img/vid.png') 0 0 no-repeat;
         background-size: 100% 100%;
         cursor: pointer;
         
@@ -84,7 +83,7 @@ img#logo {
             width: @size;
             height: @size;
             text-indent: -99999em;
-            background: url('./img/play.png') 0 0 no-repeat;
+            background: url('../img/play.png') 0 0 no-repeat;
             background-size: 100% 100%;
             text-align: center;
             margin: -(@size / 2) 0 0 -(@size / 2);
@@ -95,27 +94,24 @@ img#logo {
         }
     }
     
+    .video-wrap {
+        width: 100%;
+        position: relative;
+    }
+    
     iframe {
         display: block !important;
         position: relative;
+        
+        &[data-ellumia-responsive="1"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     }
 }
-
-/*#video {
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    max-width: 853px;
-    max-height: 200px;
-    
-    iframe, object, embed {
-        positon: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-}*/
 
 #cta {
     max-width: 600px;

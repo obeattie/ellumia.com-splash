@@ -5,11 +5,16 @@
     
     <title>Ellumia &ndash; Learning, liberated.</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1" />
-    <link rel="stylesheet" href="./static/style.css">
+    <link rel="stylesheet" href="./static/css/style.css">
     
     <!--[if IE]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+        var _gaq=_gaq||[],pluginUrl="//www.google-analytics.com/plugins/ga/inpage_linkid.js";_gaq.push(["_require","inpage_linkid",pluginUrl]),_gaq.push(["_setAccount","UA-39049870-1"]),_gaq.push(["_setDomainName","ellumia.com"]),_gaq.push(["_trackPageview"]),function(){var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)}();
+    </script>
 </head>
 
 <body>
@@ -21,7 +26,8 @@
             <div id="thumb">
                 <a href="http://youtu.be/wc38SisLXX8" rel="nofollow">Watch us introduce Ellumia</a>
             </div>
-            <iframe id="yt" width="640" height="360" src="http://www.youtube.com/embed/wc38SisLXX8?rel=0&amp;vq=hd720&amp;enablejsapi=1&amp;origin=http://www.ellumia.com" frameborder="0" allowfullscreen style="display: none;"></iframe>
+            
+            <iframe id="yt" width="640" height="360" src="http://www.youtube.com/embed/wc38SisLXX8?rel=0&amp;vq=hd720&amp;enablejsapi=1&amp;rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen style="display: none;"></iframe>
         </div>
         
         <div id="cta">
@@ -30,77 +36,7 @@
         </div>
     </div></div>
     
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript">
-        $(window).on('load', function(){ $(document.body).addClass('ready'); });
-    </script>
+    <script type="text/javascript" src="./static/js/build/ellumia.min.js"></script>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-39049870-1']);
-      _gaq.push(['_trackPageview']);
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
-    <script type="text/javascript">
-        (function() {
-            var iframes = document.getElementsByTagName('iframe');
-            
-            for (var i = 0; i < iframes.length; i++) {
-                var iframe = iframes[i];
-                var players = /www\.youtube\.com/;
-                if(iframe.src.search(players) !== -1) {
-                    var videoRatio = (iframe.height / iframe.width) * 100;
-                    
-                    iframe.style.position = 'absolute';
-                    iframe.style.top = '0';
-                    iframe.style.left = '0';
-                    iframe.width = '100%';
-                    iframe.height = '100%';
-                    
-                    var div = document.createElement('div');
-                    div.className = 'video-wrap';
-                    div.style.width = '100%';
-                    div.style.position = 'relative';
-                    div.style.paddingTop = videoRatio + '%';
-                    
-                    var parentNode = iframe.parentNode;
-                    parentNode.insertBefore(div, iframe);
-                    div.appendChild(iframe);
-                }
-            }
-        })();
-        
-        (function(){
-            var firstScriptTag, tag;
-            tag = document.createElement('script');
-            tag.src = 'https://www.youtube.com/iframe_api';
-            firstScriptTag = document.getElementsByTagName('script')[0];
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-            
-            window.onYouTubeIframeAPIReady = function() {
-              var player;
-              new YT.Player('yt', {
-                events: {
-                  onReady: function(event) {
-                    var shade;
-            
-                    player = event.target;
-                    shade = $('#video #thumb');
-                    shade.children('a').attr('href', '#');
-                    shade.click(function() {
-                      shade.hide();
-                      player.playVideo();
-                      return false;
-                    });
-                  }
-                }
-              });
-            };
-        })();
-    </script>
 </body>
 </html>

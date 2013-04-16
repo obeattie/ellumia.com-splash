@@ -7,3 +7,4 @@
 .coverage
 MANIFEST
 dist/
+node_modules/
