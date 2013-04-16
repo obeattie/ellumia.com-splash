@@ -5,11 +5,10 @@ window.Ellumia = {
 Ellumia.init['responsiveYouTube'] = (root=document.body) ->
     for iframe in $('iframe[src*="www.youtube.com"]:not([data-ellumia-responsive])', root)
         iframe = $(iframe)
-        ratio = (iframe.height() / iframe.width()) * 100
         
         # Insert a wrapper
         wrapper = $('<div class="video-wrap"/>')
-            .css({ 'padding-top': "#{ ratio }%" })
+            .css({ 'padding-top': "#{ (iframe.height() / iframe.width()) * 100 }%" })
             .insertBefore(iframe)
         
         # Make sure we only do this once    
@@ -36,17 +35,19 @@ window.onYouTubeIframeAPIReady = ->
     Ellumia.VideoPlayer = new YT.Player('yt', {
         events: {
             onReady: ->
-                $('#video #thumb')
+                shade = $('#video #thumb')
+                shade
                     .children('a')
                         .attr('href', '#')
                         .end()
-                    .click(() ->
-                        $('#video #thumb').hide()
+                    .click ->
+                        shade.hide()
                         Ellumia.VideoPlayer.playVideo()
                         return false
-                    )
         }
     })
 
 
-yepnope({ load: ['https://www.youtube.com/iframe_api'] })
+yepnope {
+    load: ['https://www.youtube.com/iframe_api']
+}

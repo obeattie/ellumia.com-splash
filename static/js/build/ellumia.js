@@ -589,7 +589,7 @@ var docElement            = doc.documentElement,
   };
 
   Ellumia.init['responsiveYouTube'] = function(root) {
-    var iframe, ratio, wrapper, _i, _len, _ref, _results;
+    var iframe, wrapper, _i, _len, _ref, _results;
 
     if (root == null) {
       root = document.body;
@@ -599,9 +599,8 @@ var docElement            = doc.documentElement,
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       iframe = _ref[_i];
       iframe = $(iframe);
-      ratio = (iframe.height() / iframe.width()) * 100;
       wrapper = $('<div class="video-wrap"/>').css({
-        'padding-top': "" + ratio + "%"
+        'padding-top': "" + ((iframe.height() / iframe.width()) * 100) + "%"
       }).insertBefore(iframe);
       _results.push(iframe.attr('data-ellumia-responsive', '1').appendTo(wrapper));
     }
@@ -644,8 +643,11 @@ var docElement            = doc.documentElement,
     return Ellumia.VideoPlayer = new YT.Player('yt', {
       events: {
         onReady: function() {
-          return $('#video #thumb').children('a').attr('href', '#').end().click(function() {
-            $('#video #thumb').hide();
+          var shade;
+
+          shade = $('#video #thumb');
+          return shade.children('a').attr('href', '#').end().click(function() {
+            shade.hide();
             Ellumia.VideoPlayer.playVideo();
             return false;
           });
