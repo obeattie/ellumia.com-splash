@@ -21,12 +21,17 @@ html, body {
         -webkit-text-size-adjust: none;
     }
 
+.col {
+    padding-left: @gutter;
+    padding-right: @gutter;
+}
+
 #container {
     .box-sizing(border-box);
     height: 100%;
     display: table-cell;
     vertical-align: middle;
-    padding: @gutter;
+    padding: @gutter 0;
     
     > div {
         width: 700px;
@@ -61,9 +66,13 @@ img#logo {
 }
 
 #video {
-    position: relative;
+    .unselectable;
     
-    > #thumb {
+    > div {
+        position: relative;
+    }
+    
+    #thumb {
         position: absolute;
         z-index: 2;
         top: 0;
@@ -74,24 +83,30 @@ img#logo {
         background-size: 100% 100%;
         cursor: pointer;
         
+        @button-size: 200px;
+        
         a {
-            @size: 200px;
+            .transition(all .15s);
             
             display: block;
             position: absolute;
             top: 50%;
             left: 50%;
-            width: @size;
-            height: @size;
+            width: @button-size;
+            height: @button-size;
             text-indent: -99999em;
             background: url('../../img/play.png') 0 0 no-repeat;
             background-size: 100% 100%;
             text-align: center;
-            margin: -(@size / 2) 0 0 -(@size / 2);
+            margin: -(@button-size / 2) 0 0 -(@button-size / 2);
         }
         
         &:hover a {
             opacity: .75;
+        }
+        
+        &:active a, a:active {
+            margin-top: (-(@button-size / 2) + 3px);
         }
     }
     
@@ -158,5 +173,11 @@ img#logo {
     #container > div {
         width: 100%;
         text-align: center;
+    }
+}
+
+@media only screen and (max-width: 560px) {
+    #video {
+        padding: 0;
     }
 }
